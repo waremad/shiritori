@@ -115,8 +115,11 @@ while not(memo == []):
             if mine in log:
                 mine = ""
                 print("既に使われている")
-            elif mine[0] != head:
+            elif delmini(mine)[0] != head:
                 print("字違う",mine[0],hand)
+                mine = ""
+            elif delmini(mine)[-1] == "ん":
+                print("「ん」で終わってる")
                 mine = ""
         else:
             mine = ""
