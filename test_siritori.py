@@ -34,3 +34,10 @@ def test_avehead():
     assert avehead(["しりとり","りんご","ごり","ごま","るーる","るびー"]) == ["ごま","るびー"]
     assert avehead(["しりとり","りんご","ごり","ごま","るーる","るびー","びーる"]) == ["ごま"]
 
+def test_piclist2():
+    assert piclist2("",[]) == []
+    assert piclist2("a",[]) == []
+    assert piclist2("",["a"]) == []
+    assert piclist2("あ",["あいうえお","ああ","えおあお","かああ"]) == ["あいうえお"]
+    assert piclist2("わ",["あいうえお","ああ","えおあお","かああ"]) == []
+

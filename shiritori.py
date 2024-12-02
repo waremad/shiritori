@@ -95,6 +95,36 @@ def avehead(ls):#欲しい頭文字を決める
         chara.pop(0)
     return out
 
+def piclist2(head,ls):#listからほしい文字を考慮して指定した頭文字の単語を抽出
+    keys = []
+    dic = {}
+    for i in ls:
+        if not(delmini(i)[0] in keys):
+            keys.append(delmini(i)[0])
+        if not(delmini(i)[-1] in keys):
+            keys.append(delmini(i)[-1])
+    for i in keys:
+        n = 0
+        for j in ls:
+            if delmini(j)[0] == i:
+                n += 1
+        dic[i] = n
+    chara = []
+    while not(dic == {}):
+        chara.append([])
+        mini = min(list(dic.values()))
+        for i in list(dic.keys()):
+            if dic[i] == mini:
+                chara[-1].append(i)
+                dic.pop(i)
+    out = []
+    while out == [] and chara != []:
+        for i in ls:
+            if delmini(i)[-1] in chara[0]:
+                if delmini(i)[0] == head:
+                    out.append(i)
+        chara.pop(0)
+    return out
 
 #"""
 log = []
@@ -125,8 +155,8 @@ while not(memo == []):
             mine = ""
             print("ひらがなじゃない")
     hand(mine)
-    if piclist(delmini(mine)[-1],memo) != []:
-        word = random.choice(piclist(delmini(mine)[-1],memo))
+    if piclist2(delmini(mine)[-1],memo) != []:
+        word = random.choice(piclist2(delmini(mine)[-1],memo))
     else:
         memo = []
 print("you win")
