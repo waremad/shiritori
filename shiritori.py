@@ -12,6 +12,7 @@
 #head 次の頭文字
 
 import random
+import time
 
 def delmini(self):#小文字や伸ばし棒を消す:
     ls = ["ぁ","ぃ","ぅ","ぇ","ぉ","ゃ","ゅ","ょ","ゕ","ゖ","っ","ゎ","ー"]
@@ -127,6 +128,7 @@ def piclist2(head,ls):#listからほしい文字を考慮して指定した頭�
     return out
 
 #"""
+timelimit = 60
 log = []
 memo = readtxt("words.txt")
 if memo == []:
@@ -135,12 +137,13 @@ if memo == []:
     word = "しりとり"
 else:
     word = random.choice(avehead(memo))
-while not(memo == []):
+while not(memo == [] or timelimit <= 0):
     hand(word)
     print("cp:"+ word)
     mine = ""
+    start = time.time()
     while mine == "":
-        mine = input(head + "? ")
+        mine = input(head + str(int(timelimit//1)) + "? ")
         if isjphira(mine):
             if mine in log:
                 mine = ""
@@ -154,10 +157,15 @@ while not(memo == []):
         else:
             mine = ""
             print("ひらがなじゃない")
+    timelimit -= time.time() - start
     hand(mine)
     if piclist2(delmini(mine)[-1],memo) != []:
         word = random.choice(piclist2(delmini(mine)[-1],memo))
     else:
         memo = []
-print("you win")
+    timelimit += 5
+if timelimit <= 0:
+    print("time over")
+else:
+    print("you win")
 #"""
