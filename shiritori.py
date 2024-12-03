@@ -27,6 +27,12 @@ def readtxt(path):#txtからlistに
     with open(path, 'r', encoding='utf-8') as file:
         for line in file:
             out.append(line.strip())
+    n = 0
+    while "" in out:
+        if out[n] == "":
+            out.pop(n)
+        else:
+            n += 1
     return out
 
 def isjphira(self):#ひらがなかどうか
@@ -49,7 +55,7 @@ def piclist(head,ls):#listから指定した頭文字の単語を抽出
 
 def writetxt(value,path):#txtに追記
     with open(path, 'a') as f:
-        print(value, file=f)
+        print(value, file=f,end = "")
 
 log = []
 memo = []
@@ -60,7 +66,7 @@ def hand(word):#単語を使用
     global head
     
     if not(word in log or word in memo):
-        writetxt(word,"words.txt")
+        writetxt(word+"\n","words.txt")
     log.append(word)
     if word in memo:
         memo.remove(word)
@@ -127,13 +133,14 @@ def piclist2(head,ls):#listからほしい文字を考慮して指定した頭�
         chara.pop(0)
     return out
 
-#"""
+"""
 timelimit = 60
 log = []
+writetxt("","words.txt")
 memo = readtxt("words.txt")
 if memo == []:
     memo = ["しりとり"]
-    writetxt("しりとり","words.txt")
+    writetxt("しりとり\n","words.txt")
     word = "しりとり"
 else:
     word = random.choice(avehead(memo))
