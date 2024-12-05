@@ -133,9 +133,10 @@ def piclist2(head,ls):#listからほしい文字を考慮して指定した頭�
         chara.pop(0)
     return out
 
-"""
+#"""
 timelimit = 60
 log = []
+outchara = ["ん","ぢ","づ","ゑ","ゐ","を","ゔ"]
 writetxt("","words.txt")
 memo = readtxt("words.txt")
 if memo == []:
@@ -158,8 +159,8 @@ while not(memo == [] or timelimit <= 0):
             elif delmini(mine)[0] != head:
                 print("字違う",mine[0],hand)
                 mine = ""
-            elif delmini(mine)[-1] == "ん":
-                print("「ん」で終わってる")
+            elif delmini(mine)[-1] in outchara:
+                print("「"+delmini(mine)[-1]+"」で終わってる")
                 mine = ""
         else:
             mine = ""

@@ -41,3 +41,8 @@ def test_piclist2():
     assert piclist2("あ",["あいうえお","ああ","えおあお","かああ"]) == ["あいうえお"]
     assert piclist2("わ",["あいうえお","ああ","えおあお","かああ"]) == []
 
+#"""
+for i in range(ord('ゖ') - ord('ぁ') + 1):
+    if len(piclist(chr(ord('ぁ')+i),readtxt("words.txt"))) == 0:
+        print(chr(ord('ぁ')+i),piclist(chr(ord('ぁ')+i),readtxt("words.txt")))
+#"""
